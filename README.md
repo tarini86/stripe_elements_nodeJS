@@ -33,14 +33,17 @@ I am retrieving 5 variables at payment intent success, they are: payment intent 
 npm install
 ```
 
-2. Run the server
+2. Update .env file with your STRIPE_SECRET_KEY at the root. Replace YOUR_PUBLISHABLE_KEY with your PUBLISHABLE_KEY in public -> client.js file.
+
+
+3. Run the server
 
 ```
 npm run
 npm start
 ```
 
-3. Go to [http://localhost:4242/checkout.html](http://localhost:4242/checkout.html)
+4. Go to [http://localhost:8000/](http://localhost:8000)
 
 ### Testing: 
 
