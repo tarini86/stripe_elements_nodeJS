@@ -1,9 +1,10 @@
 const express = require("express");
+require('dotenv').config({path:'./.env'});
 const app = express();
 const { v4: uuidv4 } = require('uuid');
 
 // This is your real test secret API key.
-const stripe = require("stripe")("sk_test_51Ibux7KvDwnAxboxjAGs7xQAw2G2zdWpsjHZt7PtzcgBV8MiIwWLE2TKqNGCJaZGLFjOtFnEqtITvKaqMBxYkn5G00pND6yZrG");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 let title;
 
 

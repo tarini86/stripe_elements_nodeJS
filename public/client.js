@@ -1,5 +1,5 @@
 // A reference to Stripe.js initialized with your real test publishable API key.
-var stripe = Stripe("pk_test_51Ibux7KvDwnAxboxnWyNXjofsEp1sbFRiZ5B7UyIVrnfHNL3g7dLA3WiqiXB2BeLWpilhliZmrH7GI1ifKIfq0nb00mMd5R0XH");
+var stripe = Stripe("YOUR_PUBLISHABLE_KEY");
 
 // The items the customer wants to buy
 const urlParams = new URLSearchParams(window.location.search);
