@@ -11,10 +11,9 @@ let title;
 app.use(express.static("public"));
 app.use(express.json());
 
+// Calculate the order total on the server to prevent
+// people from directly manipulating the amount on the client
 const calculateOrderAmount = items => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
 
 var string = JSON.stringify(items);
 var objectValue = JSON.parse(string);
@@ -35,14 +34,11 @@ var itemValue = objectValue['items'];
       return 0;
       break;
     }
-
-  //console.log(items);
-  //return items;
 };
 
+// Create a PaymentIntent with the order amount and currency
 app.post("/create-payment-intent", async (req, res) => {
   const items  = req.body;
-  // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
     currency: "usd",
@@ -54,10 +50,9 @@ app.post("/create-payment-intent", async (req, res) => {
   });
 });
 
+
+// Retrieve a PaymentIntent using secret key to surface chargeId and title to the customer
 app.get("/retrieve-payment-intent", async (req, res) => {
-  //const pi = JSON.parse(req.body);
-  console.log(req.query.q);
-  // Create a PaymentIntent with the order amount and currency
   const retrieve_paymentIntent = await stripe.paymentIntents.retrieve(
     req.query.q
   );
@@ -67,4 +62,5 @@ console.log(retrieve_paymentIntent);
   });
 });
 
- app.listen(8000, () => console.log('Node server listening on port 8000!'));
+// Listen at 8000!
+app.listen(8000, () => console.log('Node server listening on port 8000!'));

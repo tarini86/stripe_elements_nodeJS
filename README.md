@@ -50,7 +50,9 @@ npm start
 Use these test cards to test your integration. Once you are ready, switch the test API keys with live API keys.
 
 Successful payment - 4242424242424242
+
 Failed payment - 4000000000009995
+
 Requires authentication - 4000002500003155
 
 For an extended lists of test cards, refer: https://stripe.com/docs/testing#cards

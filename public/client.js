@@ -10,9 +10,9 @@ var purchase = {
   items: myParam
 };
 
-console.log(purchase);
+// return order amount and item for display only
 calculateOrderAmount(myParam);
-// document.addEventListener('DOMContentLoaded', (event) => {
+
 // Disable the button until we have Stripe set up on the page
 document.querySelector("button").disabled = true;
 fetch("/create-payment-intent", {
@@ -63,7 +63,8 @@ fetch("/create-payment-intent", {
     });
   });
 
-//For display title and amount calculation 
+
+// return order amount and item for display only
 function calculateOrderAmount(myParam) {
 console.log(myParam + "hi");
   switch(String(myParam))
@@ -91,8 +92,6 @@ console.log(myParam + "hi");
 };
 
 // Calls stripe.confirmCardPayment
-// If the card requires authentication Stripe shows a pop-up modal to
-// prompt the user to enter authentication details without leaving your page.
 var payWithCard = function(stripe, card, clientSecret) {
   loading(true);
   stripe
@@ -116,7 +115,8 @@ var payWithCard = function(stripe, card, clientSecret) {
 
 /* ------- UI helpers ------- */
 
-// Disable Pay Now button when the payment is complete
+// Disable Pay Now button and hide the card element and 
+// few other fields when the payment is complete
 var orderComplete = function() {
   loading(false);
   document.getElementById("submit").disabled = true;
@@ -125,11 +125,9 @@ var orderComplete = function() {
   document.getElementById("submit").style.display='none';
   document.getElementById("txtTitle").style.display='none';
   document.getElementById("txtAmount").style.display='none';
-
 };
 
-
-// retrieves the payment_intent JSON result
+// Retrieve the payment_intent JSON result using client secret
 var retrieveCharge = function(clientSecret) {
   var piId, receipt_email, amount;
 
@@ -151,6 +149,7 @@ var retrieveCharge = function(clientSecret) {
        .then(response => response.json())
         .then(data => { 
       
+          // Surface the order confirmation and its details to the customer
            document.getElementById("txtMessage").innerHTML =
           'Success! Thank you for the order. <br/><br/>Here is the payment intent Id ' + result.paymentIntent.id + ' and charge Id ' + data.chargeId + 
           ' for your reference.<br /> <br />You should have recieved the e-book <i>' + data.title + '</i> in your e-mail at ' 
