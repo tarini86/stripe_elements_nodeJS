@@ -4,9 +4,12 @@ This is a simple [Stripe Elements](https://stripe.com/docs/payments/accept-a-pay
 
 ### Solution Design: 
 
-This solution is built using nodeJS for server side scripting and HTML/JS/CSS for the client side. It uses Stripe's Card Element, which enables you to collect the card information all within the Element. It includes a dynamically-updating card brand icon as well as inputs for the number, expiry, CVC, and postal code. 
+This demo is written in Javascript (Node.js) with the [Express framework](https://expressjs.com/). You'll need to retrieve a set of testmode API keys from the Stripe dashboard (you can create a free test account [here](https://dashboard.stripe.com/register)) to run this locally.
 
-![alt text](https://github.com/tarini86/stripe_elements/blob/main/images/Stripe_payments_sequence_diagram.png)
+To simplify this project, I am also not using any database here, either. Instead `server.js` includes a simple switch statement to read the GET params for `item`. 
+
+It uses Stripe's Card Element, which enables you to collect the card information all within the Element. It includes a dynamically-updating card brand icon as well as inputs for the number, expiry, CVC, and postal code. 
+
 
 ### Core Resources:
 1. Payment Intent
@@ -20,6 +23,7 @@ Stripe secret_key is stored and accessed from a .env file. publishable_key is no
 
 Stripe retrieve payment intent API is used to get order's payment intent id, amount, charge Id and title is retrieved via an AJAX call using secret key. 
 
+I am retrieving 5 variables at payment intent success, they are: payment intent id, charge id, product title, buyer email and product total (charge). payment intent id, amount and reciept email are retrieved from a JS callback function (client side) using the client secret. charge id and title are retrieved using secret key via AJAX (server side). 
 
 ## Running the sample
 
@@ -32,6 +36,7 @@ npm install
 2. Run the server
 
 ```
+npm run
 npm start
 ```
 
