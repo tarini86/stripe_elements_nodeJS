@@ -15,13 +15,13 @@ It uses Stripe's Card Element, which enables you to collect the card information
 1. Payment Intent
 2. Charges
 
-PaymentIntent create API is used to create the payment intent at the time of card element load. Parameters amount, currency, order_id and title are passed in the API request. 
+Stripe's create PaymentIntent API is used to create the payment intent at the time of card element load. Parameters amount, currency, order_id and title are passed in the API request. 
+
+Stripe retrieve payment intent API is used to get order's payment intent id, amount, charge Id and title via an AJAX call using secret key. 
 
 stripe.confirmCardPayment() and stripe.retrievePaymentIntent() client functions are used to confirm and retrieve the payment intent, respectively. 
 
 Stripe secret_key is stored and accessed from a .env file. publishable_key is not stored in this file, as it is not required. 
-
-Stripe retrieve payment intent API is used to get order's payment intent id, amount, charge Id and title is retrieved via an AJAX call using secret key. 
 
 I am retrieving 5 variables at payment intent success, they are: payment intent id, charge id, product title, buyer email and product total (charge). payment intent id, amount and reciept email are retrieved from a JS callback function (client side) using the client secret. charge id and title are retrieved using secret key via AJAX (server side). 
 
